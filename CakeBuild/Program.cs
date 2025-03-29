@@ -21,7 +21,7 @@ public static class Program {
 }
 
 public class BuildContext : FrostingContext {
-    public const string ProjectName = "ElectricalProgressive-Core";
+    public const string ProjectName = "ElectricalProgressive-Equipment";
 
     public BuildContext(ICakeContext context) : base(context) {
         this.BuildConfiguration = context.Argument("configuration", "Release");
