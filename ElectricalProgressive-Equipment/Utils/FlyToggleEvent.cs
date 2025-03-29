@@ -74,7 +74,7 @@ public class FlyToggleEvent : ModSystem
                 {
                     consumeFly = collectible.consumefly;
                     speedFly = collectible.flySpeed;
-                    int energy = itemSlot.Itemstack.Attributes.GetInt("electricity:energy");
+                    int energy = itemSlot.Itemstack.Attributes.GetInt("electricalprogressive:energy");
                     if (energy > consumeFly/num)
                     {
                         if (itemSlot.Itemstack.Attributes.GetBool("flying") && itemSlot.Inventory.CanPlayerAccess(allOnlinePlayer, allOnlinePlayer.Entity.Pos) && ownInventory[(int)EnumCharacterDressType.Waist]?.Itemstack?.Item.FirstCodePart().Contains("angelbelt") != true)
@@ -189,7 +189,7 @@ public class FlyToggleEvent : ModSystem
         ItemSlot itemSlot = player.InventoryManager.GetOwnInventory("character")[ElectricalProgressive.combatoverhaul ? 34:13];
         if (itemSlot == null) return false;
         if (!itemSlot.Itemstack.Attributes.GetBool("flying") &&
-            itemSlot.Itemstack.Attributes.GetInt("electricity:energy") > consumeFly/0.05)
+            itemSlot.Itemstack.Attributes.GetInt("electricalprogressive:energy") > consumeFly/0.05)
         {
             itemSlot.Itemstack.Attributes.SetBool("flying", true);
             itemSlot.MarkDirty();

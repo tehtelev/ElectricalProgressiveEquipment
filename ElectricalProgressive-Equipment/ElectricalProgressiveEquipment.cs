@@ -12,7 +12,7 @@ using ElectricalProgressive.Content.Item.Weapon;
 [assembly: ModInfo(
     "Electrical Progressive: Equipment",
     "electricalprogressiveequipment",
-    Website = "https://git",
+    Website = "https://github.com/tehtelev/ElectricalProgressiveEquipment",
     Description = "Brings electricity into the game!",
     Version = "0.9.0",
     Authors = new[] {

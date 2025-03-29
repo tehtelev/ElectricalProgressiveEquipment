@@ -1,4 +1,26 @@
 {
+  "item-static-saber": "Electric Saber",
+  "item-static-spear": "Electric Spear",
+  "item-static-shield": "Electric Shield",
+  "item-static-helmet": "Electric Helmet",
+  "item-static-armor": "Electric Chestplate",
+  "item-static-boots": "Electric Greaves",
 
+  "item-handbooktitle-static-saber": "Usage",
+  "item-handbooktext-static-saber": "A great choice for efficiently slicing enemies.<br>Stops dealing damage when discharged. Remember to recharge!",
 
+  "item-handbooktitle-static-spear": "Usage",
+  "item-handbooktext-static-spear": "Ideal for piercing through enemies.<br>Stops dealing damage when discharged. Remember to recharge!",
+
+  "item-handbooktitle-static-shield": "Usage",
+  "item-handbooktext-static-shield": "Excellent protection with a built-in flashlight.<br>Stops absorbing damage when discharged. Remember to recharge!",
+
+  "item-handbooktitle-static-helmet": "Usage",
+  "item-handbooktext-static-helmet": "Superior defense and functionality.<br>Stops absorbing damage when discharged. Remember to recharge!",
+
+  "item-handbooktitle-static-armor": "Usage",
+  "item-handbooktext-static-armor": "Superior defense and functionality. Allows flying by pressing the R key.<br>Stops absorbing damage and disables flight mode when discharged. Remember to recharge!",
+
+  "item-handbooktitle-static-boots": "Usage",
+  "item-handbooktext-static-boots": "Superior defense and functionality.<br>Stops absorbing damage when discharged. Remember to recharge!"
 }
