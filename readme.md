@@ -1,4 +1,4 @@
-# ElectricalProgressiveCore
+# ElectricalProgressiveEquipment
 
 Brings electricity into the game!
 
