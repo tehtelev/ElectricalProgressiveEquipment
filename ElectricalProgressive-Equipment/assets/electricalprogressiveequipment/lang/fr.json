@@ -1,0 +1,26 @@
+﻿{
+  "item-static-saber": "Épée électrique",
+  "item-static-spear": "Lance électrique",
+  "item-static-shield": "Bouclier électrique",
+  "item-static-helmet": "Casque électrique",
+  "item-static-armor": "Plastron électrique",
+  "item-static-boots": "Jambières électriques",
+
+  "item-handbooktitle-static-saber": "Utilisation",
+  "item-handbooktext-static-saber": "Un excellent choix pour trancher efficacement les ennemis.<br>Cesse d'infliger des dégâts lorsqu'il est déchargé. N'oubliez pas de le recharger !",
+
+  "item-handbooktitle-static-spear": "Utilisation",
+  "item-handbooktext-static-spear": "Idéal pour percer les ennemis.<br>Cesse d'infliger des dégâts lorsqu'il est déchargé. N'oubliez pas de le recharger !",
+
+  "item-handbooktitle-static-shield": "Utilisation",
+  "item-handbooktext-static-shield": "Une protection excellente avec une lampe intégrée.<br>Cesse d'absorber les dégâts lorsqu'il est déchargé. N'oubliez pas de le recharger !",
+
+  "item-handbooktitle-static-helmet": "Utilisation",
+  "item-handbooktext-static-helmet": "Protection et fonctionnalités supérieures.<br>Cesse d'absorber les dégâts lorsqu'il est déchargé. N'oubliez pas de le recharger !",
+
+  "item-handbooktitle-static-armor": "Utilisation",
+  "item-handbooktext-static-armor": "Protection et fonctionnalités supérieures. Permet de voler en appuyant sur la touche R.<br>Cesse d'absorber les dégâts et désactive le mode vol lorsqu'il est déchargé. N'oubliez pas de le recharger !",
+
+  "item-handbooktitle-static-boots": "Utilisation",
+  "item-handbooktext-static-boots": "Protection et fonctionnalités supérieures.<br>Cesse d'absorber les dégâts lorsqu'il est déchargé. N'oubliez pas de le recharger !"
+}
