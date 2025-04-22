@@ -1,35 +1,30 @@
 ﻿{
 	"code": "static-spear",
-	"class": "EWeapon",
+	"class": "ESpear",
 	"damagedby": [ "attacking" ],
 	"tool": "spear",
 	"shape": { "base": "item/static-spear" },
-
 	"heldTpHitAnimation": "spearhit",
+	"heldTpIdleAnimation": "spearidle",
+	"heldRightReadyAnimation": "spearidle",
 	"attackRange": 4.0,
-	"tooltier": 5,
-	"attackpower": 8,
+	"attackpower": 7,
 	"attributes": {
+		"heldItemPitchFollow": 1,
 		"rechargeable": true,
 		"maxcapacity": 20000,
 		"consume": 20,
-		"canAttackWithShield": true,
-		"canParryWithShield": false,
-		"attackDelay": 0.45,
-		"attackWindow": 0.9,
-		"attackTime": 1.0,
-		"attackWalkspeed": -1.0,
-		"parryDelay": 0.05,
-		"parryWindow": 0.6,
-		"parryTime": 0.7,
-		"parryWalkspeed": -0.4,
-		"stunnedTime": 1.1,
+		"lightstrike": 2000,
+		"damage": 12,
+		"damageTier": 5,
 		"handbook": {
 			"groupBy": [ "static-spear-*" ],
-			"extraSections": [{
-				"title": "electricalprogressiveequipment:item-handbooktitle-static-spear",
-				"text": "electricalprogressiveequipment:item-handbooktext-static-spear"
-            }]
+			"extraSections": [
+				{
+					"title": "electricalprogressiveequipment:item-handbooktitle-static-spear",
+					"text": "electricalprogressiveequipment:item-handbooktext-static-spear"
+				}
+			]
 		},
 		"toolrackTransform": {
 			"rotation": {
@@ -72,15 +67,15 @@
 		"electricity": [ "*" ]
 	},
 	"behaviors": [
-	    { 
-		"name": "GroundStorable",
-		"properties":
-		    {
-			"layout": "WallHalves",
-			"wallOffY": 3,
-			"ctrlKey": true
-		    }
-		}
+		{
+			"name": "GroundStorable",
+			"properties": {
+				"layout": "WallHalves",
+				"wallOffY": 3,
+				"ctrlKey": true
+			}
+		},
+		{ "name": "AnimationAuthoritative" }
 	],
 	"guiTransform": {
 		"translation": {

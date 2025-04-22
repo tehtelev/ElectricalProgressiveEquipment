@@ -1,0 +1,247 @@
+﻿using System;
+using System.Text;
+using ElectricalProgressive.Interface;
+using ElectricalProgressive.Utils;
+using Vintagestory.API.Client;
+using Vintagestory.API.Common;
+using Vintagestory.API.Common.Entities;
+using Vintagestory.API.Config;
+using Vintagestory.API.Datastructures;
+using Vintagestory.API.MathTools;
+using Vintagestory.API.Server;
+using Vintagestory.API.Util;
+using Vintagestory.GameContent;
+
+namespace ElectricalProgressive.Content.Item.Weapon;
+
+public class ESpear : Vintagestory.API.Common.Item,IEnergyStorageItem
+{
+    int consume;
+    int maxcapacity;
+    int lightstrike;
+
+    public override void OnLoaded(ICoreAPI api)
+    {
+        base.OnLoaded(api);
+
+        CollectibleBehaviorAnimationAuthoritative collectibleBehaviorAnimationAuthoritative = GetCollectibleBehavior<CollectibleBehaviorAnimationAuthoritative>(withInheritance: true);
+        if (collectibleBehaviorAnimationAuthoritative == null)
+        {
+            api.World.Logger.Warning("Spear {0} uses ItemSpear class, but lacks required AnimationAuthoritative behavior. I'll take the freedom to add this behavior, but please fix json item type.", Code);
+            collectibleBehaviorAnimationAuthoritative = new CollectibleBehaviorAnimationAuthoritative(this);
+            collectibleBehaviorAnimationAuthoritative.OnLoaded(api);
+            CollectibleBehaviors = CollectibleBehaviors.Append(collectibleBehaviorAnimationAuthoritative);
+        }
+
+        lightstrike= MyMiniLib.GetAttributeInt(this, "lightstrike", 2000);
+        consume = MyMiniLib.GetAttributeInt(this, "consume", 20);
+        maxcapacity = MyMiniLib.GetAttributeInt(this, "maxcapacity", 20000);
+        Durability = maxcapacity / consume;
+
+      
+    }
+
+
+    public override string GetHeldTpUseAnimation(ItemSlot activeHotbarSlot, Entity byEntity)
+    {
+        return null;
+    }
+    public override bool OnHeldInteractStep(float secondsUsed, ItemSlot slot, EntityAgent byEntity, BlockSelection blockSel, EntitySelection entitySel)
+    {
+        return true;
+    }
+
+    public override void OnHeldInteractStop(float secondsUsed, ItemSlot slot, EntityAgent byEntity, BlockSelection blockSel, EntitySelection entitySel)
+    {
+        if (byEntity.Attributes.GetInt("aimingCancel") == 1)
+        {
+            return;
+        }
+
+        byEntity.Attributes.SetInt("aiming", 0);
+        byEntity.StopAnimation("aim");
+        if (secondsUsed < 0.35f)
+        {
+            return;
+        }
+
+        float damage = 1.5f;
+        if (slot.Itemstack.Collectible.Attributes != null)
+        {
+            damage = slot.Itemstack.Collectible.Attributes["damage"].AsFloat();
+        }
+
+        (api as ICoreClientAPI)?.World.AddCameraShake(0.17f);
+        ItemStack projectileStack = slot.TakeOut(1);
+        slot.MarkDirty();
+        IPlayer player = null;
+        if (byEntity is EntityPlayer)
+        {
+            player = byEntity.World.PlayerByUid(((EntityPlayer)byEntity).PlayerUID);
+        }
+
+        byEntity.World.PlaySoundAt(new AssetLocation("game:sounds/player/throw"), byEntity, player, randomizePitch: false, 8f);
+
+        //берем проджектайл нашего копья и работаем с ним
+        EntityProperties entityType = byEntity.World.GetEntityType(new AssetLocation("electricalprogressiveequipment:static-spear-projectile"));
+        EntityESpear entityProjectile = byEntity.World.ClassRegistry.CreateEntity(entityType) as EntityESpear;
+
+        int energy = projectileStack.Attributes.GetInt("electricalprogressive:energy");
+
+        //а заряда на обычный урон хватит?
+        if (energy >= consume)
+            entityProjectile.Damage = damage;
+        else
+            entityProjectile.Damage = 0.0f;
+
+        //а заряда на молнию хватит?
+        if (energy >= lightstrike+consume)
+            entityProjectile.canStrike = true;
+        else
+            entityProjectile.canStrike = false;
+
+
+        entityProjectile.FiredBy = byEntity; 
+        entityProjectile.DamageTier = Attributes["damageTier"].AsInt();
+        entityProjectile.ProjectileStack = projectileStack;
+        entityProjectile.DropOnImpactChance = 1.1f;
+        entityProjectile.DamageStackOnImpact = true;
+        entityProjectile.Weight = 0.3f;
+
+        float num = 1f - byEntity.Attributes.GetFloat("aimingAccuracy");
+        double num2 = byEntity.WatchedAttributes.GetDouble("aimingRandPitch", 1.0) * (double)num * 0.75;
+        double num3 = byEntity.WatchedAttributes.GetDouble("aimingRandYaw", 1.0) * (double)num * 0.75;
+        Vec3d vec3d = byEntity.ServerPos.XYZ.Add(0.0, byEntity.LocalEyePos.Y - 0.2, 0.0);
+        Vec3d pos = (vec3d.AheadCopy(1.0, (double)byEntity.ServerPos.Pitch + num2, (double)byEntity.ServerPos.Yaw + num3) - vec3d) * 0.65 * byEntity.Stats.GetBlended("bowDrawingStrength");
+        Vec3d posWithDimension = byEntity.ServerPos.BehindCopy(0.15).XYZ.Add(byEntity.LocalEyePos.X, byEntity.LocalEyePos.Y - 0.2, byEntity.LocalEyePos.Z);
+        entityProjectile.ServerPos.SetPosWithDimension(posWithDimension);
+        entityProjectile.ServerPos.Motion.Set(pos);
+        entityProjectile.Pos.SetFrom(entityProjectile.ServerPos);
+        entityProjectile.World = byEntity.World;
+        entityProjectile.SetRotation();
+
+        byEntity.World.SpawnEntity(entityProjectile);
+        byEntity.StartAnimation("throw");
+        if (byEntity is EntityPlayer)
+        {
+            RefillSlotIfEmpty(slot, byEntity, (ItemStack itemstack) => itemstack.Collectible is ESpear);
+        }
+
+        float pitchModifier = (byEntity as EntityPlayer).talkUtil.pitchModifier;
+        player.Entity.World.PlaySoundAt(new AssetLocation("game:sounds/player/strike"), player.Entity, player, pitchModifier * 0.9f + (float)api.World.Rand.NextDouble() * 0.2f, 16f, 0.35f);
+    }
+
+
+    public override void OnHeldInteractStart(ItemSlot itemslot, EntityAgent byEntity, BlockSelection blockSel, EntitySelection entitySel, bool firstEvent, ref EnumHandHandling handling)
+    {
+        base.OnHeldInteractStart(itemslot, byEntity, blockSel, entitySel, firstEvent, ref handling);
+        if (handling != EnumHandHandling.PreventDefault)
+        {
+            handling = EnumHandHandling.PreventDefault;
+            byEntity.Attributes.SetInt("aiming", 1);
+            byEntity.Attributes.SetInt("aimingCancel", 0);
+            byEntity.StartAnimation("aim");
+        }
+    }
+
+    public override bool OnHeldAttackStep(float secondsPassed, ItemSlot slot, EntityAgent byEntity,
+        BlockSelection blockSelection, EntitySelection entitySel)
+    {
+        
+        int energy = slot.Itemstack.Attributes.GetInt("electricalprogressive:energy");
+        secondsPassed *= 1.25f;
+
+        float backwards = -Math.Min(0.35f, 2 * secondsPassed);
+        float stab = Math.Min(1.2f, 20 * Math.Max(0, secondsPassed - 0.35f));
+
+        if (byEntity.World.Side == EnumAppSide.Client)
+        {
+            IClientWorldAccessor world = byEntity.World as IClientWorldAccessor;
+           
+
+            if (stab > 1.15f && byEntity.Attributes.GetInt("didattack") == 0 && energy >= consume)
+            {
+                world.TryAttackEntity(entitySel);
+                byEntity.Attributes.SetInt("didattack", 1);
+                world.AddCameraShake(0.25f);
+            }
+        }
+
+
+        //return true;
+        return secondsPassed < 1.2f;
+        
+    }
+
+    public override bool OnHeldInteractCancel(float secondsUsed, ItemSlot slot, EntityAgent byEntity, BlockSelection blockSel, EntitySelection entitySel, EnumItemUseCancelReason cancelReason)
+    {
+        byEntity.Attributes.SetInt("aiming", 0);
+        byEntity.StopAnimation("aim");
+        if (cancelReason != 0)
+        {
+            byEntity.Attributes.SetInt("aimingCancel", 1);
+        }
+
+        return true;
+    }
+
+    
+    public override void DamageItem(IWorldAccessor world, Entity byEntity, ItemSlot itemslot, int amount = 1)
+    {
+        int energy = itemslot.Itemstack.Attributes.GetInt("electricalprogressive:energy");
+        if (energy >= consume * amount)
+        {
+            energy -= consume * amount;
+            itemslot.Itemstack.Attributes.SetInt("durability", Math.Max(1, energy / consume));
+            itemslot.Itemstack.Attributes.SetInt("electricalprogressive:energy", energy);
+        }
+        else
+        {
+            itemslot.Itemstack.Attributes.SetInt("durability", 1);
+        }
+    }
+
+    public override void OnHeldAttackStop(float secondsPassed, ItemSlot slot, EntityAgent byEntity,
+        BlockSelection blockSelection, EntitySelection entitySel)
+    {
+
+    }
+    
+    public override void GetHeldItemInfo(ItemSlot inSlot, StringBuilder dsc, IWorldAccessor world, bool withDebugInfo)
+    {
+        base.GetHeldItemInfo(inSlot, dsc, world, withDebugInfo);
+        dsc.AppendLine(inSlot.Itemstack.Attributes.GetInt("electricalprogressive:energy") + "/" + maxcapacity + " " + Lang.Get("W"));
+
+        if (inSlot.Itemstack.Collectible.Attributes != null)
+        {
+            float num = 1.5f;
+            if (inSlot.Itemstack.Collectible.Attributes != null)
+            {
+                num = inSlot.Itemstack.Collectible.Attributes["damage"].AsFloat();
+            }
+
+            dsc.AppendLine(num + Lang.Get("piercing-damage-thrown"));
+        }
+    }
+    
+    public int receiveEnergy(ItemStack itemstack, int maxReceive)
+    {
+        int received = Math.Min(maxcapacity - itemstack.Attributes.GetInt("electricalprogressive:energy"), maxReceive);
+        itemstack.Attributes.SetInt("electricalprogressive:energy", itemstack.Attributes.GetInt("electricalprogressive:energy") + received);
+        int durab = Math.Max(1, itemstack.Attributes.GetInt("electricalprogressive:energy") / consume);
+        itemstack.Attributes.SetInt("durability", durab);
+        return received;
+    }
+
+
+    public override WorldInteraction[] GetHeldInteractionHelp(ItemSlot inSlot)
+    {
+        return new WorldInteraction[] {
+                new WorldInteraction()
+                {
+                    ActionLangCode = "heldhelp-throw",
+                    MouseButton = EnumMouseButton.Right,
+                }
+            }.Append(base.GetHeldInteractionHelp(inSlot));
+    }
+}
