@@ -9,6 +9,7 @@
 	"heldRightReadyAnimation": "spearidle",
 	"attackRange": 4.0,
 	"attackpower": 7,
+  "durability": 1000,
 	"attributes": {
 		"heldItemPitchFollow": 1,
 		"rechargeable": true,

@@ -1,4 +1,4 @@
-{
+﻿{
   "item-static-saber": "Electric Saber",
   "item-static-spear": "Electric Spear",
   "item-static-shield": "Electric Shield",
@@ -10,7 +10,7 @@
   "item-handbooktext-static-saber": "A great choice for efficiently slicing enemies.<br>Stops dealing damage when discharged. Remember to recharge!",
 
   "item-handbooktitle-static-spear": "Usage",
-  "item-handbooktext-static-spear": "Ideal for piercing through enemies.<br>Stops dealing damage when discharged. Remember to recharge!",
+"item-handbooktext-static-spear": "A great choice for piercing enemies. It has two throwing modes: standard and ionizing spear. In the second mode, the spear causes strong air ionization upon hitting any living creature, triggering a lightning strike and igniting the target. This consumes 10% of the charge capacity.<br>Playing with lightning is dangerous—be careful.<br>When fully discharged, it stops dealing damage. Don’t forget to recharge!",
 
   "item-handbooktitle-static-shield": "Usage",
   "item-handbooktext-static-shield": "Excellent protection with a built-in flashlight.<br>Stops absorbing damage when discharged. Remember to recharge!",

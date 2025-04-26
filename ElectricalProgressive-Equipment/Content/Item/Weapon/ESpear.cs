@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Drawing;
 using System.Text;
 using ElectricalProgressive.Interface;
 using ElectricalProgressive.Utils;
@@ -14,11 +15,13 @@ using Vintagestory.GameContent;
 
 namespace ElectricalProgressive.Content.Item.Weapon;
 
-public class ESpear : Vintagestory.API.Common.Item,IEnergyStorageItem
+public class ESpear : Vintagestory.API.Common.Item, IEnergyStorageItem
 {
     int consume;
     int maxcapacity;
     int lightstrike;
+    public SkillItem[] toolModes;
+
 
     public override void OnLoaded(ICoreAPI api)
     {
@@ -36,10 +39,82 @@ public class ESpear : Vintagestory.API.Common.Item,IEnergyStorageItem
         lightstrike= MyMiniLib.GetAttributeInt(this, "lightstrike", 2000);
         consume = MyMiniLib.GetAttributeInt(this, "consume", 20);
         maxcapacity = MyMiniLib.GetAttributeInt(this, "maxcapacity", 20000);
-        Durability = maxcapacity / consume;
 
-      
+
+
+
+        ICoreClientAPI capi = api as ICoreClientAPI;
+        if (capi == null)
+            return;
+
+        //задаем режимы копья
+        toolModes = ObjectCacheUtil.GetOrCreate(api, "spearToolModes", () => new SkillItem[2]
+        {
+            new SkillItem
+            {
+                Code = new AssetLocation("1size"),
+                Name = Lang.Get("spear_common")
+            }.WithIcon(capi, capi.Gui.LoadSvg(new AssetLocation("electricalprogressiveequipment:textures/icons/spear-common.svg"),252,256,252,256,ColorUtil.WhiteArgb)),
+            new SkillItem
+            {
+                Code = new AssetLocation("3size"),
+                Name = Lang.Get("spear_flash")
+            }.WithIcon(capi, capi.Gui.LoadSvg(new AssetLocation("electricalprogressiveequipment:textures/icons/spear-flash.svg"), 252, 266, 252, 266, ColorUtil.WhiteArgb))
+        });
     }
+
+
+
+
+
+    public override SkillItem[] GetToolModes(ItemSlot slot, IClientPlayer forPlayer, BlockSelection blockSel)
+    {
+        return toolModes;
+    }
+
+    /// <summary>
+    /// Берем выбранный режим копья
+    /// </summary>
+    /// <param name="slot"></param>
+    /// <param name="byPlayer"></param>
+    /// <param name="blockSel"></param>
+    /// <returns></returns>
+    public override int GetToolMode(ItemSlot slot, IPlayer byPlayer, BlockSelection blockSel)
+    {
+        return slot.Itemstack.Attributes.GetInt("toolMode");
+    }
+
+    public override void OnUnloaded(ICoreAPI api)
+    {
+        for (int index = 0; toolModes != null && index < toolModes.Length; ++index)
+            toolModes[index]?.Dispose();
+    }
+
+
+    /// <summary>
+    /// Игрок выбрал режим копья
+    /// </summary>
+    /// <param name="slot"></param>
+    /// <param name="byPlayer"></param>
+    /// <param name="blockSel"></param>
+    /// <param name="toolMode"></param>
+    public override void SetToolMode(
+        ItemSlot slot,
+        IPlayer byPlayer,
+        BlockSelection blockSel,
+        int toolMode)
+    {
+        ItemSlot mouseItemSlot = byPlayer.InventoryManager.MouseItemSlot;
+        if (!mouseItemSlot.Empty && mouseItemSlot.Itemstack.Block != null)
+        {
+            api.Event.PushEvent("keepopentoolmodedlg");
+        }
+        else
+            slot.Itemstack.Attributes.SetInt(nameof(toolMode), toolMode);
+    }
+
+
+
 
 
     public override string GetHeldTpUseAnimation(ItemSlot activeHotbarSlot, Entity byEntity)
@@ -60,7 +135,9 @@ public class ESpear : Vintagestory.API.Common.Item,IEnergyStorageItem
 
         byEntity.Attributes.SetInt("aiming", 0);
         byEntity.StopAnimation("aim");
-        if (secondsUsed < 0.35f)
+
+        //время прицеливания по сути
+        if (secondsUsed < 0.5f)
         {
             return;
         }
@@ -72,13 +149,21 @@ public class ESpear : Vintagestory.API.Common.Item,IEnergyStorageItem
         }
 
         (api as ICoreClientAPI)?.World.AddCameraShake(0.17f);
-        ItemStack projectileStack = slot.TakeOut(1);
-        slot.MarkDirty();
+
         IPlayer player = null;
         if (byEntity is EntityPlayer)
         {
             player = byEntity.World.PlayerByUid(((EntityPlayer)byEntity).PlayerUID);
         }
+
+        //берем режим копья
+        bool can = false;
+        if (GetToolMode(slot, player, blockSel) == 1)
+            can = true;
+
+        ItemStack projectileStack = slot.TakeOut(1);
+        slot.MarkDirty();
+
 
         byEntity.World.PlaySoundAt(new AssetLocation("game:sounds/player/throw"), byEntity, player, randomizePitch: false, 8f);
 
@@ -94,11 +179,16 @@ public class ESpear : Vintagestory.API.Common.Item,IEnergyStorageItem
         else
             entityProjectile.Damage = 0.0f;
 
-        //а заряда на молнию хватит?
-        if (energy >= lightstrike+consume)
+
+        //а заряда на молнию хватит? режим инструмента?
+        if (energy >= lightstrike + consume && can)
+        {
             entityProjectile.canStrike = true;
+        }
         else
             entityProjectile.canStrike = false;
+
+
 
 
         entityProjectile.FiredBy = byEntity; 

@@ -9,7 +9,7 @@ using Vintagestory.API.Common.Entities;
 
 
 [assembly: ModDependency("game", "1.20.0")]
-[assembly: ModDependency("electricalprogressivecore", "0.9.3")]
+[assembly: ModDependency("electricalprogressivecore", "0.9.8")]
 [assembly: ModDependency("electricalprogressivebasics", "0.9.5")]
 [assembly: ModDependency("electricalprogressiveqol", "0.9.5")]
 [assembly: ModInfo(
@@ -17,7 +17,7 @@ using Vintagestory.API.Common.Entities;
     "electricalprogressiveequipment",
     Website = "https://github.com/tehtelev/ElectricalProgressiveEquipment",
     Description = "Brings electricity into the game!",
-    Version = "0.9.5",
+    Version = "0.9.8",
     Authors = new[] {
         "Tehtelev",
         "Kotl"
