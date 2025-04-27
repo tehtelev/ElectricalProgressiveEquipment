@@ -22,7 +22,6 @@ public class ESpear : Vintagestory.API.Common.Item, IEnergyStorageItem
     int lightstrike;
     public SkillItem[] toolModes;
 
-
     public override void OnLoaded(ICoreAPI api)
     {
         base.OnLoaded(api);
@@ -125,6 +124,22 @@ public class ESpear : Vintagestory.API.Common.Item, IEnergyStorageItem
     {
         return true;
     }
+
+
+    public override void OnHeldAttackStart(ItemSlot slot, EntityAgent byEntity, BlockSelection blockSel, EntitySelection entitySel, ref EnumHandHandling handling)
+    {
+        int energy = slot.Itemstack.Attributes.GetInt("electricalprogressive:energy");
+        if (energy < consume)
+        {
+            handling = EnumHandHandling.PreventDefault;
+            return;
+        }
+
+        base.OnHeldAttackStart(slot, byEntity, blockSel, entitySel, ref handling);
+
+
+    }
+
 
     public override void OnHeldInteractStop(float secondsUsed, ItemSlot slot, EntityAgent byEntity, BlockSelection blockSel, EntitySelection entitySel)
     {
@@ -234,6 +249,16 @@ public class ESpear : Vintagestory.API.Common.Item, IEnergyStorageItem
         }
     }
 
+
+    /// <summary>
+    /// Левая кнопка мыши зажата
+    /// </summary>
+    /// <param name="secondsPassed"></param>
+    /// <param name="slot"></param>
+    /// <param name="byEntity"></param>
+    /// <param name="blockSelection"></param>
+    /// <param name="entitySel"></param>
+    /// <returns></returns>
     public override bool OnHeldAttackStep(float secondsPassed, ItemSlot slot, EntityAgent byEntity,
         BlockSelection blockSelection, EntitySelection entitySel)
     {

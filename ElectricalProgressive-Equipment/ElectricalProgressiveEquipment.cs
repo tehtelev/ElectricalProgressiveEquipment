@@ -17,7 +17,7 @@ using Vintagestory.API.Common.Entities;
     "electricalprogressiveequipment",
     Website = "https://github.com/tehtelev/ElectricalProgressiveEquipment",
     Description = "Brings electricity into the game!",
-    Version = "0.9.8",
+    Version = "0.9.9",
     Authors = new[] {
         "Tehtelev",
         "Kotl"

@@ -3,16 +3,21 @@
 	"damagedby": [ "blockbreaking", "attacking" ],
 	"tool": "sword",
 	"class": "EWeapon",
+	"durability": 1000,
 	"attributes": {
+		"heldItemPitchFollow": 0.9,
 		"rechargeable": true,
 		"maxcapacity": 20000,
+		"fireCost": 200,
 		"consume": 20,
 		"handbook": {
 			"groupBy": [ "static-saber-*" ],
-			"extraSections": [{
-				"title": "electricalprogressiveequipment:item-handbooktitle-static-saber",
-				"text": "electricalprogressiveequipment:item-handbooktext-static-saber"
-            }]
+			"extraSections": [
+				{
+					"title": "electricalprogressiveequipment:item-handbooktitle-static-saber",
+					"text": "electricalprogressiveequipment:item-handbooktext-static-saber"
+				}
+			]
 		},
 		"toolrackTransform": {
 			"translation": {
@@ -41,7 +46,7 @@
 			"scale": 0.8
 		}
 	},
-	"shape": { "base": "item/static-saber" },
+	"shape": { "base": "item/static-saber-{type}" },
 
 	"heldTpHitAnimation": "spearhit",
 	"attackRange": 3,
@@ -51,21 +56,38 @@
 		"wood": 2,
 		"leaves": 1.4
 	},
-	"behaviors": [
-	    { 
-		"name": "GroundStorable",
-		"properties":
-		    {
-			"layout": "WallHalves",
-			"wallOffY": 1,
-			"ctrlKey": true
-		    }
+
+
+	"variantgroups": [
+		{
+			"code": "type",
+			"states": [ "common", "hot" ]
 		}
 	],
+
+	"behaviors": [
+		{
+			"name": "GroundStorable",
+			"properties": {
+				"layout": "WallHalves",
+				"wallOffY": 1,
+				"ctrlKey": true
+			}
+		},
+		{ "name": "AnimationAuthoritative" }
+	],
+
+
 	"creativeinventory": {
 		"general": [ "*" ],
-		"electricity": [ "*" ]
+		"electricity": [ "*-common" ]
 	},
+
+	"lightHsvByType": {
+		"*-hot": [ 0, 0, 5 ],
+		"*": [ 0, 0, 0 ]
+	},
+
 	"fpHandTransform": {
 		"translation": {
 			"x": -0.2,

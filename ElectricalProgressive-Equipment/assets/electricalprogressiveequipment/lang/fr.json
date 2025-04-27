@@ -7,7 +7,8 @@
   "item-static-boots": "Jambières électriques",
 
   "item-handbooktitle-static-saber": "Utilisation",
-  "item-handbooktext-static-saber": "Un excellent choix pour trancher efficacement les ennemis.<br>Cesse d'infliger des dégâts lorsqu'il est déchargé. N'oubliez pas de le recharger !",
+  "item-handbooktext-static-saber": "Un bon choix pour trancher efficacement vos ennemis. La lame peut être chauffée à blanc pour les enflammer.<br>Une fois déchargée, elle ne infligera plus de dégâts. N’oubliez pas de la recharger !",
+
 
   "item-handbooktitle-static-spear": "Utilisation",
   "item-handbooktext-static-spear": "Un excellent choix pour percer les ennemis. Elle dispose de deux modes de lancer : standard et lance ionisante. Dans le second mode, la lance provoque une forte ionisation de l'air lorsqu'elle touche une créature vivante, déclenchant un éclair et enflammant la cible. Cela consomme 10 % de la capacité de charge.<br>Jouer avec la foudre est dangereux, soyez prudent.<br>Lorsqu'elle est complètement déchargée, elle cesse d'infliger des dégâts. N'oubliez pas de la recharger !",
@@ -22,5 +23,10 @@
   "item-handbooktext-static-armor": "Protection et fonctionnalités supérieures. Permet de voler en appuyant sur la touche R.<br>Cesse d'absorber les dégâts et désactive le mode vol lorsqu'il est déchargé. N'oubliez pas de le recharger !",
 
   "item-handbooktitle-static-boots": "Utilisation",
-  "item-handbooktext-static-boots": "Protection et fonctionnalités supérieures.<br>Cesse d'absorber les dégâts lorsqu'il est déchargé. N'oubliez pas de le recharger !"
+  "item-handbooktext-static-boots": "Protection et fonctionnalités supérieures.<br>Cesse d'absorber les dégâts lorsqu'il est déchargé. N'oubliez pas de le recharger !",
+
+
+  "game:spear_common": "Lance commune",
+  "game:spear_flash": "Lance ionisante",
+  "game:saber_right": "Chauffer/Refroidir la lame"
 }
