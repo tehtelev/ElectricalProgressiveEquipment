@@ -1,0 +1,31 @@
+﻿{
+  "item-static-saber-*": "Miecz elektryczny",
+  "item-static-spear": "Włócznia elektryczna",
+  "item-static-shield": "Tarcza elektryczna",
+  "item-static-helmet": "Hełm elektryczny",
+  "item-static-armor": "Napierśnik elektryczny",
+  "item-static-boots": "Nagolenniki elektryczne",
+
+  "item-handbooktitle-static-saber": "Użycie",
+  "item-handbooktext-static-saber": "Dobry wybór do efektywnego cięcia wrogów. Można rozgrzać ostrze na czerwono i podpalać przeciwników.<br>Gdy energia się wyczerpie, miecz przestanie zadawać obrażenia. Nie zapomnij ładować!",
+
+  "item-handbooktitle-static-spear": "Użycie",
+  "item-handbooktext-static-spear": "Dobry wybór do przebijania wrogów. Posiada dwa tryby rzutu: zwykły i jonizujący. W drugim trybie włócznia jonizuje powietrze przy trafieniu żywej istoty, wywołując wyładowanie piorunowe i podpalenie. Zużywa 10% energii.<br>Zabawy z piorunami są niebezpieczne – zachowaj ostrożność.<br>Gdy energia się wyczerpie, włócznia przestanie zadawać obrażenia. Nie zapomnij ładować!",
+
+  "item-handbooktitle-static-shield": "Użycie",
+  "item-handbooktext-static-shield": "Doskonała ochrona z wbudowaną latarką.<br>Gdy energia się wyczerpie, tarcza przestanie pochłaniać obrażenia. Nie zapomnij ładować!",
+
+  "item-handbooktitle-static-helmet": "Użycie",
+  "item-handbooktext-static-helmet": "Doskonała ochrona i funkcje.<br>Gdy energia się wyczerpie, hełm przestanie pochłaniać obrażenia. Nie zapomnij ładować!",
+
+  "item-handbooktitle-static-armor": "Użycie",
+  "item-handbooktext-static-armor": "Doskonała ochrona i możliwości. Pozwala latać po naciśnięciu R.<br>Gdy energia się wyczerpie, ochrona i tryb lotu wyłączą się. Nie zapomnij ładować!",
+
+  "item-handbooktitle-static-boots": "Użycie",
+  "item-handbooktext-static-boots": "Doskonała ochrona i funkcje.<br>Gdy energia się wyczerpie, nagolenniki przestaną pochłaniać obrażenia. Nie zapomnij ładować!",
+
+  "game:spear_common": "Zwykła włócznia",
+  "game:spear_flash": "Jonizująca włócznia",
+
+  "game:saber_right": "Rozgrzej/Zgasić ostrze"
+}

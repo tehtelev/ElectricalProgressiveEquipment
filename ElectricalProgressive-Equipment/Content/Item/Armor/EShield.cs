@@ -69,7 +69,7 @@ class EShield : Vintagestory.API.Common.Item,IEnergyStorageItem
     public override void GetHeldItemInfo(ItemSlot inSlot, StringBuilder dsc, IWorldAccessor world, bool withDebugInfo)
     {
         base.GetHeldItemInfo(inSlot, dsc, world, withDebugInfo);
-        JsonObject itemAttribute = inSlot.Itemstack?.ItemAttributes?["eshield"];
+        JsonObject itemAttribute = inSlot.Itemstack?.ItemAttributes?["eshield"]!;
         if (itemAttribute == null || !itemAttribute.Exists)
             return;
         if (itemAttribute["protectionChance"]["active-projectile"].Exists)
@@ -87,7 +87,7 @@ class EShield : Vintagestory.API.Common.Item,IEnergyStorageItem
         dsc.AppendLine("<strong>" + Lang.Get("Melee attack protection") + "</strong>");
         dsc.AppendLine(Lang.Get("shield-stats",  (int) (100.0 * (double) num5),  (int) (100.0 * (double) num6),  num4));
         dsc.AppendLine();
-        dsc.AppendLine(inSlot.Itemstack.Attributes.GetInt("electricalprogressive:energy") + "/" + maxcapacity + " " + Lang.Get("W"));
+        dsc.AppendLine(inSlot.Itemstack?.Attributes.GetInt("electricalprogressive:energy") + "/" + maxcapacity + " " + Lang.Get("J"));
     }
 
     public int receiveEnergy(ItemStack itemstack, int maxReceive)
