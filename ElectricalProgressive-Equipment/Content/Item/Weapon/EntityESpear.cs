@@ -73,7 +73,7 @@ namespace ElectricalProgressive.Content.Item.Weapon
             base.impactOnEntity(entity);
 
 
-            if  (ElectricalProgressiveEquipment.WeatherSystemServer == null)
+            if  (ElectricalProgressive.WeatherSystemServer == null)
                 return;
 
 
@@ -82,7 +82,7 @@ namespace ElectricalProgressive.Content.Item.Weapon
             {
                 var hitPoint = entity.Pos;
 
-                ElectricalProgressiveEquipment.WeatherSystemServer.SpawnLightningFlash(hitPoint.XYZ);
+                ElectricalProgressive.WeatherSystemServer.SpawnLightningFlash(hitPoint.XYZ);
 
                 entity.IsOnFire = true;
 

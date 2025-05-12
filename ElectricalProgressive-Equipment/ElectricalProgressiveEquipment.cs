@@ -9,15 +9,15 @@ using Vintagestory.API.Common.Entities;
 
 
 [assembly: ModDependency("game", "1.20.0")]
-[assembly: ModDependency("electricalprogressivecore", "0.9.10")]
-[assembly: ModDependency("electricalprogressivebasics", "0.9.10")]
-[assembly: ModDependency("electricalprogressiveqol", "0.9.10")]
+[assembly: ModDependency("electricalprogressivecore", "1.0.0")]
+[assembly: ModDependency("electricalprogressivebasics", "1.0.0")]
+[assembly: ModDependency("electricalprogressiveqol", "1.0.0")]
 [assembly: ModInfo(
     "Electrical Progressive: Equipment",
     "electricalprogressiveequipment",
     Website = "https://github.com/tehtelev/ElectricalProgressiveEquipment",
     Description = "Brings electricity into the game!",
-    Version = "0.9.10",
+    Version = "1.0.0",
     Authors = new[] {
         "Tehtelev",
         "Kotl"
@@ -32,7 +32,7 @@ public class ElectricalProgressiveEquipment : ModSystem
     public static bool combatoverhaul = false;                        //установлен ли combatoverhaul
     private ICoreAPI api = null!;
     private ICoreClientAPI capi = null!;
-    public static WeatherSystemServer? WeatherSystemServer;
+    
 
     private readonly string[] _targetFiles =
     {
@@ -80,7 +80,6 @@ public class ElectricalProgressiveEquipment : ModSystem
     public override void StartServerSide(ICoreServerAPI api)
     {
         base.StartServerSide(api);
-        WeatherSystemServer = api.ModLoader.GetModSystem<WeatherSystemServer>();
 
     }
 }
