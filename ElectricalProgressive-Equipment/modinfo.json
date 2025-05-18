@@ -7,11 +7,11 @@
     "Kotl"
   ],
   "description": "Brings electricity into the game!",
-  "Version": "1.0.0",
+  "Version": "1.0.1",
   "dependencies": {
     "game": "1.20.0",
-    "electricalprogressivecore": "1.0.0",
-    "electricalprogressivebasics": "1.0.0",
-    "electricalprogressiveqol": "1.0.0"
+    "electricalprogressivecore": "1.0.1",
+    "electricalprogressivebasics": "1.0.1",
+    "electricalprogressiveqol": "1.0.1"
   }
 }
