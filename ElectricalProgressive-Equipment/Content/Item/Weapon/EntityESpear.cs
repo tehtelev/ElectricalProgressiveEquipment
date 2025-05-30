@@ -72,33 +72,33 @@ namespace ElectricalProgressive.Content.Item.Weapon
         {
             base.impactOnEntity(entity);
 
-
+            // без погоды не будет ничего
             if  (ElectricalProgressive.WeatherSystemServer == null)
                 return;
 
 
-
+            // живой и можно сразить молнией?
             if (entity.Alive && canStrike)
             {
                 var hitPoint = entity.Pos;
 
-                ElectricalProgressive.WeatherSystemServer.SpawnLightningFlash(hitPoint.XYZ);
+                ElectricalProgressive.WeatherSystemServer.SpawnLightningFlash(hitPoint.XYZ); // бах молнией
 
-                entity.IsOnFire = true;
+                entity.IsOnFire = true; // поджигаем
 
-                canStrike = false;
+                canStrike = false; // больше не можем бить молнией
 
                 //ломаем сильно копье от молнии
                 int lightstrike = MyMiniLib.GetAttributeInt(ProjectileStack.Block, "lightstrike", 2000);
-                int maxcapacity = MyMiniLib.GetAttributeInt(ProjectileStack.Block, "maxcapacity", 20000);
                 int consume = MyMiniLib.GetAttributeInt(ProjectileStack.Block, "consume", 20);
 
-                int energy = ProjectileStack.Attributes.GetInt("electricalprogressive:energy");
-                if (energy >= lightstrike)
+                int energy = ProjectileStack.Attributes.GetInt("durability") * consume;
+
+                if (energy > lightstrike)
                 {
                     energy -= lightstrike;
                     ProjectileStack.Attributes.SetInt("durability", Math.Max(1, energy / consume));
-                    ProjectileStack.Attributes.SetInt("electricalprogressive:energy", energy);
+                    
                 }
                 else
                 {

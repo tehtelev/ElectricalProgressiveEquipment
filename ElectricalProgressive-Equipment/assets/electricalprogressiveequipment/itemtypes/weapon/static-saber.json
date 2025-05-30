@@ -7,7 +7,6 @@
 	"attributes": {
 		"heldItemPitchFollow": 0.9,
 		"rechargeable": true,
-		"maxcapacity": 20000,
 		"fireCost": 200,
 		"consume": 20,
 		"handbook": {

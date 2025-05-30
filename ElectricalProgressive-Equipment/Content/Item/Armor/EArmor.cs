@@ -12,49 +12,78 @@ namespace ElectricalProgressive.Content.Item.Armor;
 class EArmor : ItemWearable,IEnergyStorageItem
 {
     public int consume;
-    public int maxcapacity;
     public int consumefly;
     public float flySpeed;
-    //EntityPlayer eplr;
+
 
     public override void OnLoaded(ICoreAPI api)
     {
         base.OnLoaded(api);
+
         consume = MyMiniLib.GetAttributeInt(this, "consume", 20);
-        maxcapacity = MyMiniLib.GetAttributeInt(this, "maxcapacity", 20000);
         consumefly = MyMiniLib.GetAttributeInt(this, "consumeFly", 40);
         flySpeed = MyMiniLib.GetAttributeFloat(this, "speedFly", 2.0F);
-        Durability = maxcapacity / consume;
     }
-    
-    
-    public override void DamageItem(IWorldAccessor world, Entity byEntity, ItemSlot itemslot, int amount)
+
+
+    /// <summary>
+    /// Уменьшаем прочность
+    /// </summary>
+    /// <param name="world"></param>
+    /// <param name="byEntity"></param>
+    /// <param name="itemslot"></param>
+    /// <param name="amount"></param>
+    public override void DamageItem(IWorldAccessor world, Entity byEntity, ItemSlot itemslot, int amount = 1)
     {
-        int energy = itemslot.Itemstack.Attributes.GetInt("electricalprogressive:energy");
-        if (energy >= consume * amount)
+        int durability = itemslot.Itemstack.Attributes.GetInt("durability");
+        if (durability >= amount)
         {
-            energy -= consume * amount;
-            itemslot.Itemstack.Attributes.SetInt("durability", Math.Max(1, energy / consume));
-            itemslot.Itemstack.Attributes.SetInt("electricalprogressive:energy", energy);
+            durability -= amount;
+            itemslot.Itemstack.Attributes.SetInt("durability", durability);
         }
         else
         {
-            itemslot.Itemstack.Attributes.SetInt("durability", 0);
+            durability = 0;
+            itemslot.Itemstack.Attributes.SetInt("durability", durability);
         }
+
         itemslot.MarkDirty();
     }
-    
+
+
+
+    /// <summary>
+    /// Информация о предмете
+    /// </summary>
+    /// <param name="inSlot"></param>
+    /// <param name="dsc"></param>
+    /// <param name="world"></param>
+    /// <param name="withDebugInfo"></param>
     public override void GetHeldItemInfo(ItemSlot inSlot, StringBuilder dsc, IWorldAccessor world, bool withDebugInfo)
     {
         base.GetHeldItemInfo(inSlot, dsc, world, withDebugInfo);
-        dsc.AppendLine(inSlot.Itemstack.Attributes.GetInt("electricalprogressive:energy") + "/" + maxcapacity + " " + Lang.Get("J"));
+
+        int energy = inSlot.Itemstack.Attributes.GetInt("durability") * consume; //текущая энергия
+        int maxEnergy = inSlot.Itemstack.Collectible.GetMaxDurability(inSlot.Itemstack) * consume;       //максимальная энергия
+        dsc.AppendLine(energy + "/" + maxEnergy + " " + Lang.Get("J"));
     }
 
+    /// <summary>
+    /// Зарядка
+    /// </summary>
+    /// <param name="itemstack"></param>
+    /// <param name="maxReceive"></param>
+    /// <returns></returns>
     public int receiveEnergy(ItemStack itemstack, int maxReceive)
     {
-        int received = Math.Min(maxcapacity - itemstack.Attributes.GetInt("electricalprogressive:energy"), maxReceive);
-        itemstack.Attributes.SetInt("electricalprogressive:energy", itemstack.Attributes.GetInt("electricalprogressive:energy") + received);
-        int durab = Math.Max(1, itemstack.Attributes.GetInt("electricalprogressive:energy") / consume);
+        int energy = itemstack.Attributes.GetInt("durability") * consume; //текущая энергия
+        int maxEnergy = itemstack.Collectible.GetMaxDurability(itemstack) * consume;       //максимальная энергия
+
+        int received = Math.Min(maxEnergy - energy, maxReceive);
+
+        energy += received;
+
+        int durab = Math.Max(0, energy / consume);
         itemstack.Attributes.SetInt("durability", durab);
         return received;
     }

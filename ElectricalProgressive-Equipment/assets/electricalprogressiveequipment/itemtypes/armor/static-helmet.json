@@ -1,4 +1,4 @@
-{
+﻿{
 	"code": "static-helmet",
 	"class": "EArmor",
 	"behaviors": [
@@ -33,23 +33,25 @@
 	},
 	"heldTpIdleAnimation": "holdunderarm",
 	"storageFlags": 128,
+	"durability": 1000,
 	"attributes": {
 		"rechargeable": true,
-		"maxcapacity": 20000,
 		"consume": 20,
 		"wearableAttachment": true,
 		"handbook": {
 			"groupBy": [ "static-helmet-*" ],
-			"extraSections": [{
-				"title": "electricalprogressiveequipment:item-handbooktitle-static-helmet",
-				"text": "electricalprogressiveequipment:item-handbooktext-static-helmet"
-            }]
+			"extraSections": [
+				{
+					"title": "electricalprogressiveequipment:item-handbooktitle-static-helmet",
+					"text": "electricalprogressiveequipment:item-handbooktext-static-helmet"
+				}
+			]
 		},
 		"clothescategoryByType": {
 			"*": "armorhead"
 		},
 		"disableElementsByType": {
-			"*": ["hidehat", "Hood", "hoodupperover", "Hair tile upper part", "ponytailhigh", "ponytaillow", "Hair", "hair-uncovered", "hidefacialhair", "sidehigh", "sidelow", "bangs"]
+			"*": [ "hidehat", "Hood", "hoodupperover", "Hair tile upper part", "ponytailhigh", "ponytaillow", "Hair", "hair-uncovered", "hidefacialhair", "sidehigh", "sidelow", "bangs" ]
 		},
 		"defaultProtLoss": {
 			"perTierRelativeProtectionLoss": [ 0.025, 0.15 ],

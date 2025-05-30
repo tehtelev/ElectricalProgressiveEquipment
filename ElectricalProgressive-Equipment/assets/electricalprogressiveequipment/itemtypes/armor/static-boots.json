@@ -1,32 +1,50 @@
-{
+﻿{
 	"code": "static-boots",
 	"class": "EArmor",
-	"behaviors": [{
-		"name": "CombatOverhaul:Armor",
-		"properties": {
-			"Layers": ["Outer"],
-			"Zones": ["Legs", "Feet"],
-			"Resists": {"PiercingAttack": 10, "SlashingAttack": 10, "BluntAttack": 5},
-			"FlatReduction": {"PiercingAttack": 1, "SlashingAttack": 1, "BluntAttack": 1},
-			"PlayerStats": {"walkspeed": 0.2, "manipulationSpeed": 0, "steadyAim": 0, "healingeffectivness": -0.03, "hungerrate": 0.03}
+	"behaviors": [
+		{
+			"name": "CombatOverhaul:Armor",
+			"properties": {
+				"Layers": [ "Outer" ],
+				"Zones": [ "Legs", "Feet" ],
+				"Resists": {
+					"PiercingAttack": 10,
+					"SlashingAttack": 10,
+					"BluntAttack": 5
+				},
+				"FlatReduction": {
+					"PiercingAttack": 1,
+					"SlashingAttack": 1,
+					"BluntAttack": 1
+				},
+				"PlayerStats": {
+					"walkspeed": 0.2,
+					"manipulationSpeed": 0,
+					"steadyAim": 0,
+					"healingeffectivness": -0.03,
+					"hungerrate": 0.03
+				}
+			}
 		}
-	}],
+	],
 	"shapeByType": {
 		"*": { "base": "entity/armor/static-boots" }
 	},
 	"heldTpIdleAnimation": "holdunderarm",
 	"storageFlags": 128,
+	"durability": 1000,
 	"attributes": {
 		"rechargeable": true,
-		"maxcapacity": 20000,
 		"consume": 20,
 		"wearableAttachment": true,
 		"handbook": {
 			"groupBy": [ "static-boots-*" ],
-			"extraSections": [{
-				"title": "electricalprogressiveequipment:item-handbooktitle-static-boots",
-				"text": "electricalprogressiveequipment:item-handbooktext-static-boots"
-            }]
+			"extraSections": [
+				{
+					"title": "electricalprogressiveequipment:item-handbooktitle-static-boots",
+					"text": "electricalprogressiveequipment:item-handbooktext-static-boots"
+				}
+			]
 		},
 		"clothescategoryByType": {
 			"*": "armorlegs"

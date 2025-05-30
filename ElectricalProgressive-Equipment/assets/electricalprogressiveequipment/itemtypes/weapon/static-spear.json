@@ -13,7 +13,6 @@
 	"attributes": {
 		"heldItemPitchFollow": 1,
 		"rechargeable": true,
-		"maxcapacity": 20000,
 		"consume": 20,
 		"lightstrike": 2000,
 		"damage": 12,

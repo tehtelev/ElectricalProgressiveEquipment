@@ -2,20 +2,22 @@
 	"code": "static-shield",
 	"class": "EShield",
 	"storageFlags": 257,
+	"durability": 1000,
 	"creativeinventory": {
 		"general": [ "*" ],
 		"electricity": [ "*" ]
 	},
 	"attributes": {
 		"rechargeable": true,
-		"maxcapacity": 20000,
 		"consume": 20,
 		"handbook": {
 			"groupBy": [ "static-shield-*" ],
-			"extraSections": [{
-				"title": "electricalprogressiveequipment:item-handbooktitle-static-shield",
-				"text": "electricalprogressiveequipment:item-handbooktext-static-shield"
-            }]
+			"extraSections": [
+				{
+					"title": "electricalprogressiveequipment:item-handbooktitle-static-shield",
+					"text": "electricalprogressiveequipment:item-handbooktext-static-shield"
+				}
+			]
 		},
 		"groundStorageTransform": {
 			"translation": {
@@ -39,7 +41,7 @@
 				"passive": 0.5,
 				"active": 0.9
 			},
-			"projectileDamageAbsorption":10,
+			"projectileDamageAbsorption": 10,
 			"damageAbsorption": 8
 		},
 		"rackable": true,
@@ -70,14 +72,13 @@
 	"shape": { "base": "item/static-shield" },
 
 	"behaviors": [
-	    { 
-		"name": "GroundStorable",
-		"properties":
-		    {
-			"layout": "WallHalves",
-			"wallOffY": 2,
-			"ctrlKey": true
-		    }
+		{
+			"name": "GroundStorable",
+			"properties": {
+				"layout": "WallHalves",
+				"wallOffY": 2,
+				"ctrlKey": true
+			}
 		}
 	],
 	"fpHandTransform": {

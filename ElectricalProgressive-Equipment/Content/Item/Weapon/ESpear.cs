@@ -18,7 +18,6 @@ namespace ElectricalProgressive.Content.Item.Weapon;
 public class ESpear : Vintagestory.API.Common.Item, IEnergyStorageItem
 {
     int consume;
-    int maxcapacity;
     int lightstrike;
     public SkillItem[] toolModes;
 
@@ -37,9 +36,6 @@ public class ESpear : Vintagestory.API.Common.Item, IEnergyStorageItem
 
         lightstrike= MyMiniLib.GetAttributeInt(this, "lightstrike", 2000);
         consume = MyMiniLib.GetAttributeInt(this, "consume", 20);
-        maxcapacity = MyMiniLib.GetAttributeInt(this, "maxcapacity", 20000);
-
-
 
 
         ICoreClientAPI capi = api as ICoreClientAPI;
@@ -128,8 +124,8 @@ public class ESpear : Vintagestory.API.Common.Item, IEnergyStorageItem
 
     public override void OnHeldAttackStart(ItemSlot slot, EntityAgent byEntity, BlockSelection blockSel, EntitySelection entitySel, ref EnumHandHandling handling)
     {
-        int energy = slot.Itemstack.Attributes.GetInt("electricalprogressive:energy");
-        if (energy < consume)
+        int durability = slot.Itemstack.Attributes.GetInt("durability");
+        if (durability <= 1)
         {
             handling = EnumHandHandling.PreventDefault;
             return;
@@ -186,17 +182,17 @@ public class ESpear : Vintagestory.API.Common.Item, IEnergyStorageItem
         EntityProperties entityType = byEntity.World.GetEntityType(new AssetLocation("electricalprogressiveequipment:static-spear-projectile"));
         EntityESpear entityProjectile = byEntity.World.ClassRegistry.CreateEntity(entityType) as EntityESpear;
 
-        int energy = projectileStack.Attributes.GetInt("electricalprogressive:energy");
-
+        int energy = projectileStack.Attributes.GetInt("durability") * consume;
+        
         //а заряда на обычный урон хватит?
-        if (energy >= consume)
+        if (energy > consume)
             entityProjectile.Damage = damage;
         else
             entityProjectile.Damage = 0.0f;
 
 
         //а заряда на молнию хватит? режим инструмента?
-        if (energy >= lightstrike + consume && can)
+        if (energy > lightstrike + consume && can)
         {
             entityProjectile.canStrike = true;
         }
@@ -237,6 +233,8 @@ public class ESpear : Vintagestory.API.Common.Item, IEnergyStorageItem
     }
 
 
+
+
     public override void OnHeldInteractStart(ItemSlot itemslot, EntityAgent byEntity, BlockSelection blockSel, EntitySelection entitySel, bool firstEvent, ref EnumHandHandling handling)
     {
         base.OnHeldInteractStart(itemslot, byEntity, blockSel, entitySel, firstEvent, ref handling);
@@ -261,9 +259,8 @@ public class ESpear : Vintagestory.API.Common.Item, IEnergyStorageItem
     /// <returns></returns>
     public override bool OnHeldAttackStep(float secondsPassed, ItemSlot slot, EntityAgent byEntity,
         BlockSelection blockSelection, EntitySelection entitySel)
-    {
+    {        
         
-        int energy = slot.Itemstack.Attributes.GetInt("electricalprogressive:energy");
         secondsPassed *= 1.25f;
 
         float backwards = -Math.Min(0.35f, 2 * secondsPassed);
@@ -272,9 +269,10 @@ public class ESpear : Vintagestory.API.Common.Item, IEnergyStorageItem
         if (byEntity.World.Side == EnumAppSide.Client)
         {
             IClientWorldAccessor world = byEntity.World as IClientWorldAccessor;
-           
 
-            if (stab > 1.15f && byEntity.Attributes.GetInt("didattack") == 0 && energy >= consume)
+            int energy = slot.Itemstack.Attributes.GetInt("durability") * consume;
+
+            if (stab > 1.15f && byEntity.Attributes.GetInt("didattack") == 0 && energy > consume)
             {
                 world.TryAttackEntity(entitySel);
                 byEntity.Attributes.SetInt("didattack", 1);
@@ -300,32 +298,56 @@ public class ESpear : Vintagestory.API.Common.Item, IEnergyStorageItem
         return true;
     }
 
-    
+
+
+    /// <summary>
+    /// Уменьшаем прочность
+    /// </summary>
+    /// <param name="world"></param>
+    /// <param name="byEntity"></param>
+    /// <param name="itemslot"></param>
+    /// <param name="amount"></param>
     public override void DamageItem(IWorldAccessor world, Entity byEntity, ItemSlot itemslot, int amount = 1)
     {
-        int energy = itemslot.Itemstack.Attributes.GetInt("electricalprogressive:energy");
-        if (energy >= consume * amount)
+        int durability = itemslot.Itemstack.Attributes.GetInt("durability");
+        if (durability > amount)
         {
-            energy -= consume * amount;
-            itemslot.Itemstack.Attributes.SetInt("durability", Math.Max(1, energy / consume));
-            itemslot.Itemstack.Attributes.SetInt("electricalprogressive:energy", energy);
+            durability -= amount;
+            itemslot.Itemstack.Attributes.SetInt("durability", durability);
         }
         else
         {
-            itemslot.Itemstack.Attributes.SetInt("durability", 1);
+            durability = 1;
+            itemslot.Itemstack.Attributes.SetInt("durability", durability);
         }
+
+        itemslot.MarkDirty();
     }
+
+
 
     public override void OnHeldAttackStop(float secondsPassed, ItemSlot slot, EntityAgent byEntity,
         BlockSelection blockSelection, EntitySelection entitySel)
     {
 
     }
-    
+
+
+    /// <summary>
+    /// Информация о предмете
+    /// </summary>
+    /// <param name="inSlot"></param>
+    /// <param name="dsc"></param>
+    /// <param name="world"></param>
+    /// <param name="withDebugInfo"></param>
     public override void GetHeldItemInfo(ItemSlot inSlot, StringBuilder dsc, IWorldAccessor world, bool withDebugInfo)
     {
         base.GetHeldItemInfo(inSlot, dsc, world, withDebugInfo);
-        dsc.AppendLine(inSlot.Itemstack.Attributes.GetInt("electricalprogressive:energy") + "/" + maxcapacity + " " + Lang.Get("J"));
+
+        int energy = inSlot.Itemstack.Attributes.GetInt("durability") * consume; //текущая энергия
+        int maxEnergy = inSlot.Itemstack.Collectible.GetMaxDurability(inSlot.Itemstack) * consume;       //максимальная энергия
+
+        dsc.AppendLine(energy + "/" + maxEnergy + " " + Lang.Get("J"));
 
         if (inSlot.Itemstack.Collectible.Attributes != null)
         {
@@ -338,17 +360,34 @@ public class ESpear : Vintagestory.API.Common.Item, IEnergyStorageItem
             dsc.AppendLine(num + Lang.Get("piercing-damage-thrown"));
         }
     }
-    
+
+
+
+    /// <summary>
+    /// Зарядка
+    /// </summary>
+    /// <param name="itemstack"></param>
+    /// <param name="maxReceive"></param>
+    /// <returns></returns>
     public int receiveEnergy(ItemStack itemstack, int maxReceive)
     {
-        int received = Math.Min(maxcapacity - itemstack.Attributes.GetInt("electricalprogressive:energy"), maxReceive);
-        itemstack.Attributes.SetInt("electricalprogressive:energy", itemstack.Attributes.GetInt("electricalprogressive:energy") + received);
-        int durab = Math.Max(1, itemstack.Attributes.GetInt("electricalprogressive:energy") / consume);
+        int energy = itemstack.Attributes.GetInt("durability") * consume; //текущая энергия
+        int maxEnergy = itemstack.Collectible.GetMaxDurability(itemstack) * consume;       //максимальная энергия
+
+        int received = Math.Min(maxEnergy - energy, maxReceive);
+
+        energy += received;
+
+        int durab = Math.Max(1, energy / consume);
         itemstack.Attributes.SetInt("durability", durab);
         return received;
     }
 
-
+    /// <summary>
+    /// Получаем помощь по взаимодействию с предметом в руке
+    /// </summary>
+    /// <param name="inSlot"></param>
+    /// <returns></returns>
     public override WorldInteraction[] GetHeldInteractionHelp(ItemSlot inSlot)
     {
         return new WorldInteraction[] {
