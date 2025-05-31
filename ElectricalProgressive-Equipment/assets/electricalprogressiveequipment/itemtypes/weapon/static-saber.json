@@ -6,7 +6,7 @@
 	"durability": 1000,
 	"attributes": {
 		"heldItemPitchFollow": 0.9,
-		"rechargeable": true,
+		"chargable": true,
 		"fireCost": 200,
 		"consume": 20,
 		"handbook": {

@@ -34,7 +34,7 @@
 	"storageFlags": 128,
 	"durability": 1000,
 	"attributes": {
-		"rechargeable": true,
+		"chargable": true,
 		"consume": 20,
 		"consumeFly": 40,
 		"speedFly": 2.0,

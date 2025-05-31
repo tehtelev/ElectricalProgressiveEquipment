@@ -34,7 +34,7 @@
 	"storageFlags": 128,
 	"durability": 1000,
 	"attributes": {
-		"rechargeable": true,
+		"chargable": true,
 		"consume": 20,
 		"wearableAttachment": true,
 		"handbook": {
