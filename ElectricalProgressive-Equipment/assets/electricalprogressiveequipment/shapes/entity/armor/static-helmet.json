@@ -1,4 +1,4 @@
-{
+﻿{
 	"editor": {
 		"allAngles": true,
 		"entityTextureMode": true
@@ -11,14 +11,14 @@
 		"glass4": [16,16]
 	},
 	"textures": {
-			"seraph":"game:block/transparent" ,
-			"copper":  "electricalprogressivebasics:block/copper" ,
-			"gold":  "electricalprogressivebasics:block/gold" ,
-			"iron":  "electricalprogressivebasics:block/iron" ,
-			"cheap":  "electricalprogressivebasics:block/cheap" ,
-			"steel":  "electricalprogressivebasics:block/steel" ,
-			"uranium":  "electricalprogressivebasics:block/uranium" ,
-			"zinc":  "electricalprogressivebasics:block/zinc" 
+		"seraph": "game:block/transparent",
+		"copper": "game:block/metal/plate/copper",
+		"gold": "game:block/metal/plate/gold",
+		"iron": "game:block/metal/plate/iron",
+		"cheap": "electricalprogressiveequipment:armor/cheap",
+		"steel": "game:block/metal/plate/steel",
+		"uranium": "game:block/metal/plate/uranium",
+		"zinc": "game:block/metal/plate/zinc"
 	},
 	"elements": [
 		{

@@ -9,14 +9,14 @@
 	"heldRightReadyAnimation": "spearidle",
 	"attackRange": 4.0,
 	"attackpower": 7,
-  "durability": 1000,
+	"durability": 1000,
+	"tooltier": 5,
 	"attributes": {
 		"heldItemPitchFollow": 1,
 		"chargable": true,
 		"consume": 20,
 		"lightstrike": 2000,
 		"damage": 12,
-		"damageTier": 5,
 		"handbook": {
 			"groupBy": [ "static-spear-*" ],
 			"extraSections": [

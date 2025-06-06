@@ -71,7 +71,7 @@ public class FlyToggleEvent : ModSystem
             IInventory ownInventory = allOnlinePlayer.InventoryManager.GetOwnInventory("character");
             if (ownInventory != null)
             {
-                ItemSlot itemSlot = ownInventory[ElectricalProgressive.combatoverhaul ? 34 : 13];
+                ItemSlot itemSlot = ownInventory[ElectricalProgressiveEquipment.combatoverhaul ? 34 : 13];
                 if (itemSlot.Itemstack?.Collectible is EArmor collectible)
                 {
                     consumeFly = collectible.consumefly;
@@ -85,7 +85,13 @@ public class FlyToggleEvent : ModSystem
                             itemSlot.Inventory.CanPlayerAccess(allOnlinePlayer, allOnlinePlayer.Entity.Pos) &&
                             ownInventory[(int)EnumCharacterDressType.Waist]?.Itemstack?.Item.FirstCodePart().Contains("angelbelt") != true)
                         {
-                            collectible.receiveEnergy(itemSlot.Itemstack, -(int)(consumeFly / num));
+                            //collectible.receiveEnergy(itemSlot.Itemstack, -(int)(consumeFly / num));
+
+                            int consume = MyMiniLib.GetAttributeInt(itemSlot.Itemstack.Item, "consume", 20);     //размер минимальной порции   
+                            int damage = (int)(consumeFly / num/ consume);                         //рассчитываем удар по проч
+                            itemSlot.Itemstack.Item.DamageItem(sapi.World, null, itemSlot, damage); // уменьшаем прочность на размер порции
+
+
                             itemSlot.MarkDirty();
                         }
                     }
@@ -109,7 +115,7 @@ public class FlyToggleEvent : ModSystem
             IInventory ownInventory = allOnlinePlayer.InventoryManager.GetOwnInventory("character");
             if (ownInventory != null)
             {
-                ItemSlot itemSlot = ownInventory[ElectricalProgressive.combatoverhaul ? 34 : 13];
+                ItemSlot itemSlot = ownInventory[ElectricalProgressiveEquipment.combatoverhaul ? 34 : 13];
                 if (itemSlot.Itemstack?.Collectible is EArmor collectible)
                 {
                     if (itemSlot.Itemstack.Attributes.GetBool("flying") &&
@@ -202,7 +208,7 @@ public class FlyToggleEvent : ModSystem
 
     public bool Toggle(IPlayer player, FlyToggle bt)
     {
-        ItemSlot itemSlot = player.InventoryManager.GetOwnInventory("character")[ElectricalProgressive.combatoverhaul ? 34 : 13];
+        ItemSlot itemSlot = player.InventoryManager.GetOwnInventory("character")[ElectricalProgressiveEquipment.combatoverhaul ? 34 : 13];
         if (itemSlot == null) return false;
         if (!itemSlot.Itemstack.Attributes.GetBool("flying") &&
             itemSlot.Itemstack.Attributes.GetInt("durability")*consume > consumeFly / 0.05)
@@ -287,7 +293,7 @@ public class FlyToggleEvent : ModSystem
                 return false;
             }
 
-            ItemSlot beltslot = ownInventory[ElectricalProgressive.combatoverhaul ? 34 : 13];
+            ItemSlot beltslot = ownInventory[ElectricalProgressiveEquipment.combatoverhaul ? 34 : 13];
             if (beltslot == null)
             {
                 return false;

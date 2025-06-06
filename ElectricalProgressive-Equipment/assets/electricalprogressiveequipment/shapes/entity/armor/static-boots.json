@@ -1,4 +1,4 @@
-{
+﻿{
 	"editor": {
 		"allAngles": true,
 		"entityTextureMode": true
@@ -8,16 +8,16 @@
 	"textureSizes": {
 	},
 	"textures": {
-			"seraph":  "game:block/transparent" ,
-			"bismuthbronze":  "electricalprogressivebasics:block/bismuthbronze" ,
-			"blackbronze":  "electricalprogressivebasics:block/blackbronze" ,
-			"brass":  "electricalprogressivebasics:block/brass" ,
-			"chain-iron": "electricalprogressivebasics:block/chain-iron" ,
-			"copper":  "electricalprogressivebasics:block/copper" ,
-			"plain":  "electricalprogressivebasics:block/plain" ,
-			"scale-iron":  "electricalprogressivebasics:block/scale-iron" ,
-			"steel":  "electricalprogressivebasics:block/steel" ,
-			"zinc": "electricalprogressivebasics:block/zinc" 
+		"seraph": "game:block/transparent",
+		"bismuthbronze": "game:block/metal/plate/bismuthbronze",
+		"blackbronze": "game:block/metal/plate/blackbronze",
+		"brass": "game:block/metal/plate/brass",
+		"chain-iron": "game:block/metal/armor-generic/chain-iron",
+		"copper": "game:block/metal/plate/copper",
+		"plain": "game:block/cloth/linen/plain",
+		"scale-iron": "game:block/metal/armor-generic/scale-iron",
+		"steel": "game:block/metal/plate/steel",
+		"zinc": "game:block/metal/plate/zinc"
 	},
 	"elements": [
 		{

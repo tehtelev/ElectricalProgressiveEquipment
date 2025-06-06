@@ -7,18 +7,6 @@
         <RootNamespace>ElectricalProgressive</RootNamespace>
     </PropertyGroup>
     <ItemGroup>
-      <Reference Include="ElectricalProgressive-Core">
-        <HintPath>C:\Users\tehtelev\source\repos\ElectricalProgressive-Core\Releases\electricalprogressivecore\ElectricalProgressive-Core.dll</HintPath>
-        <Private>False</Private>
-      </Reference>
-      <Reference Include="ElectricalProgressive-Basics">
-        <HintPath>C:\Users\tehtelev\source\repos\ElectricalProgressive-Basics\Releases\electricalprogressivebasics\ElectricalProgressive-Basics.dll</HintPath>
-        <Private>False</Private>
-      </Reference>
-      <Reference Include="ElectricalProgressive-QOL">
-        <HintPath>C:\Users\tehtelev\source\repos\ElectricalProgressive-QOL\Releases\electricalprogressiveqol\ElectricalProgressive-QOL.dll</HintPath>
-        <Private>False</Private>
-      </Reference>
         <Reference Include="protobuf-net">
             <HintPath>$(VINTAGE_STORY)/Lib/protobuf-net.dll</HintPath>
             <Private>False</Private>

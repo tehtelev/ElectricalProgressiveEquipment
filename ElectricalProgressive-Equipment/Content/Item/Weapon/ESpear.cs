@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Drawing;
 using System.Text;
-using ElectricalProgressive.Interface;
 using ElectricalProgressive.Utils;
 using Vintagestory.API.Client;
 using Vintagestory.API.Common;
@@ -15,7 +14,7 @@ using Vintagestory.GameContent;
 
 namespace ElectricalProgressive.Content.Item.Weapon;
 
-public class ESpear : Vintagestory.API.Common.Item, IEnergyStorageItem
+public class ESpear : Vintagestory.API.Common.Item
 {
     int consume;
     int lightstrike;
@@ -363,25 +362,7 @@ public class ESpear : Vintagestory.API.Common.Item, IEnergyStorageItem
 
 
 
-    /// <summary>
-    /// Зарядка
-    /// </summary>
-    /// <param name="itemstack"></param>
-    /// <param name="maxReceive"></param>
-    /// <returns></returns>
-    public int receiveEnergy(ItemStack itemstack, int maxReceive)
-    {
-        int energy = itemstack.Attributes.GetInt("durability") * consume; //текущая энергия
-        int maxEnergy = itemstack.Collectible.GetMaxDurability(itemstack) * consume;       //максимальная энергия
 
-        int received = Math.Min(maxEnergy - energy, maxReceive);
-
-        energy += received;
-
-        int durab = Math.Max(1, energy / consume);
-        itemstack.Attributes.SetInt("durability", durab);
-        return received;
-    }
 
     /// <summary>
     /// Получаем помощь по взаимодействию с предметом в руке

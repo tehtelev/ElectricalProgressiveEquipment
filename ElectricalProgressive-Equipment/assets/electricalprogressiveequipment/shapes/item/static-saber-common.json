@@ -8,16 +8,16 @@
 	"textureSizes": {
 	},
 	"textures": {
-		"bismuthbronze": "electricalprogressivebasics:block/bismuthbronze",
-		"brass": "electricalprogressivebasics:block/brass",
-		"red": "electricalprogressivebasics:block/copper",
-		"copper": "electricalprogressivebasics:block/copper",
-		"gold": "electricalprogressivebasics:block/gold",
-		"iron": "electricalprogressivebasics:block/iron",
-		"stainlesssteel": "electricalprogressivebasics:block/stainlesssteel",
-		"steel": "electricalprogressivebasics:block/steel",
-		"uranium": "electricalprogressivebasics:block/uranium",
-		"zinc": "electricalprogressivebasics:block/zinc"
+		"bismuthbronze": "game:block/metal/plate/bismuthbronze",
+		"brass": "game:block/metal/plate/brass",
+		"red": "game:block/metal/plate/copper",
+		"copper": "game:block/metal/plate/copper",
+		"gold": "game:block/metal/plate/gold",
+		"iron": "game:block/metal/plate/iron",
+		"stainlesssteel": "game:block/metal/plate/stainlesssteel",
+		"steel": "game:block/metal/plate/steel",
+		"uranium": "game:block/metal/plate/uranium",
+		"zinc": "game:block/metal/plate/zinc"
 
 	},
 	"elements": [
