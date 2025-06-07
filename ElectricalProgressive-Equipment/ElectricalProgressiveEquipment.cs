@@ -65,12 +65,7 @@ public class ElectricalProgressiveEquipment : ModSystem
             combatoverhaul = true;
 
 
-        // Patch armor for CO
-        if (combatoverhaul)
-        {
-            var processor = new ArmorAssetProcessor(api);
-            processor.ProcessAssets("electricalprogressiveequipment", _targetFiles);
-        }
+
     }
 
 
