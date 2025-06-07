@@ -8,6 +8,7 @@
 	"heldTpIdleAnimation": "spearidle",
 	"heldRightReadyAnimation": "spearidle",
 	"attackRange": 4.0,
+    "tooltier": 6,
 	"attackpower": 7,
 	"durability": 1000,
 	"tooltier": 5,
