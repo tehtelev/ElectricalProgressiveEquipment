@@ -1,4 +1,4 @@
-{
+﻿{
 	"editor": {
 		"collapsedPaths": "Root/BELT26/Cube13,Root/BELT26/Cube39,Root/BELT26/Cube15,Root/BELT26/Cube38,Root/BELT23/Cube34,Root/BELT23/Cube5,Root/BELT23/Cube31,Root/BELT26/Cube39/Cube47",
 		"allAngles": true,
@@ -8,18 +8,18 @@
 	"textureHeight": 64,
 	"textureSizes": {
 	},
-	"textures": {	
-				"seraph": "game:block/transparent" ,
-				"bismuthbronze": "electricalprogressivebasics:block/bismuthbronze" ,
-				"chain-iron":  "electricalprogressivebasics:block/chain-iron" ,
-				"cheap":  "electricalprogressivebasics:block/cheap" ,
-				"coke":  "electricalprogressivebasics:block/coke" ,
-				"copper":  "electricalprogressivebasics:block/copper" ,
-				"iron":  "electricalprogressivebasics:block/iron" ,
-				"plain":  "electricalprogressivebasics:block/plain" ,
-				"scale-iron":  "electricalprogressivebasics:block/scale-iron" ,
-				"steel":  "electricalprogressivebasics:block/steel" ,
-				"zinc":  "electricalprogressivebasics:block/zinc" 	
+	"textures": {
+		"seraph": "game:block/transparent",
+		"bismuthbronze": "game:block/metal/plate/bismuthbronze",
+		"chain-iron": "game:block/metal/armor-generic/chain-iron",
+		"cheap": "electricalprogressiveequipment:armor/cheap",
+		"coke": "game:block/coal/coke",
+		"copper": "game:block/metal/plate/copper",
+		"iron": "game:block/metal/plate/iron",
+		"plain": "game:block/cloth/linen/plain",
+		"scale-iron": "game:block/metal/armor-generic/scale-iron",
+		"steel": "game:block/metal/plate/steel",
+		"zinc": "game:block/metal/plate/zinc"
 	},
 	"elements": [
 		{

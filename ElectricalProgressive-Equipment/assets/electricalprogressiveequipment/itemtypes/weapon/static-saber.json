@@ -4,6 +4,7 @@
 	"tool": "sword",
 	"class": "EWeapon",
 	"durability": 1000,
+  "tooltier": 5,
 	"attributes": {
 		"heldItemPitchFollow": 0.9,
 		"chargable": true,

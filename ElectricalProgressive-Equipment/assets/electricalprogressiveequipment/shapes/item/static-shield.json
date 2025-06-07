@@ -1,4 +1,4 @@
-{
+﻿{
 	"editor": {
 		"allAngles": true,
 		"entityTextureMode": false
@@ -10,14 +10,14 @@
 		"acacia": [16,16]
 	},
 	"textures": {
-		"bismuthbronze":  "electricalprogressivebasics:block/bismuthbronze" ,
-		"copper":  "electricalprogressivebasics:block/copper" ,
-		"iron": "electricalprogressivebasics:block/iron" ,
-		"steel":  "electricalprogressivebasics:block/steel" ,
-		"zinc":  "electricalprogressivebasics:block/zinc" ,
-		"quartzglass":  "electricalprogressivebasics:block/quartzglass" ,
-		"coke":  "electricalprogressivebasics:block/coke" ,
-		"tin":  "electricalprogressivebasics:block/tin" 
+		"bismuthbronze": "game:block/metal/plate/bismuthbronze",
+		"copper": "game:block/metal/plate/copper",
+		"iron": "game:block/metal/plate/iron",
+		"steel": "game:block/metal/plate/steel",
+		"zinc": "game:block/metal/plate/zinc",
+		"quartzglass": "electricalprogressivebasics:block/quartzglass",
+		"coke": "game:block/coal/coke",
+		"tin": "game:block/metal/plate/tin"
 	},
 	"elements": [
 		{
