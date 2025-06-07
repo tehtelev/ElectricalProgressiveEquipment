@@ -2,30 +2,6 @@
 	"code": "static-boots",
 	"class": "EArmor",
 	"behaviors": [
-		{
-			"name": "CombatOverhaul:Armor",
-			"properties": {
-				"Layers": [ "Outer" ],
-				"Zones": [ "Legs", "Feet" ],
-				"Resists": {
-					"PiercingAttack": 10,
-					"SlashingAttack": 10,
-					"BluntAttack": 5
-				},
-				"FlatReduction": {
-					"PiercingAttack": 1,
-					"SlashingAttack": 1,
-					"BluntAttack": 1
-				},
-				"PlayerStats": {
-					"walkspeed": 0.2,
-					"manipulationSpeed": 0,
-					"steadyAim": 0,
-					"healingeffectivness": -0.03,
-					"hungerrate": 0.03
-				}
-			}
-		}
 	],
 	"shapeByType": {
 		"*": { "base": "entity/armor/static-boots" }
