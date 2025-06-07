@@ -33,15 +33,6 @@ public class ElectricalProgressiveEquipment : ModSystem
     public static WeatherSystemServer? WeatherSystemServer;
 
 
-    private readonly string[] _targetFiles =
-    {
-        "itemtypes/armor/static-armor.json",
-        "itemtypes/armor/static-boots.json",
-        "itemtypes/armor/static-helmet.json"
-    };
-
-
- 
 
     public override void Start(ICoreAPI api)
     {
@@ -84,7 +75,6 @@ public class ElectricalProgressiveEquipment : ModSystem
     public override void StartServerSide(ICoreServerAPI api)
     {
         base.StartServerSide(api);
-
                     
         WeatherSystemServer = api.ModLoader.GetModSystem<WeatherSystemServer>();
 
