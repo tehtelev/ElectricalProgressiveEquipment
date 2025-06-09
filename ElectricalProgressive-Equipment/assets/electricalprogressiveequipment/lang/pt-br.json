@@ -26,5 +26,28 @@
 
   "game:spear_common": "Lança comum",
   "game:spear_flash": "Lança ionizante",
-  "game:saber_right": "Aquecer/Resfriar a lâmina"
+  "game:saber_right": "Aquecer/Resfriar a lâmina",
+
+
+  "item-edrill": "Broca elétrica",
+  "item-echisel": "Martelo perfurador elétrico",
+  "item-edrilltip": "Ponta de broca",
+  "item-eaxe": "Machado elétrico",
+
+  "game:drill1": "Escava um bloco 1×1",
+  "game:drill2": "Escava uma área de 1×3 blocos",
+
+  "item-handbooktitle-edrill": "Uso",
+  "item-handbooktext-edrill": "A mineração atinge um novo nível. Permite operar em dois modos: 1×1 e 1×3.<br>Quando a carga acabar, ele para de funcionar. Não se esqueça de recarregar!",
+
+  "item-handbooktitle-echisel": "Uso",
+  "item-handbooktext-echisel": "Desempenha funções de cinzel movido a bateria. Martelo na mão secundária não é necessário. Não usado em receitas.<br>Quando a carga acabar, ele para de funcionar. Não se esqueça de recarregar!",
+
+  "item-handbooktitle-edrilltip": "Uso",
+  "item-handbooktext-edrilltip": "Componente base para a broca elétrica.",
+
+  "item-handbooktitle-eaxe": "Uso",
+  "item-handbooktext-eaxe": "Perfeito para cortar troncos. Não usado em receitas.<br>Quando a carga acabar, ele para de funcionar. Não se esqueça de recarregar!"
+
+
 }

@@ -28,5 +28,29 @@
 
   "game:spear_common": "Lance commune",
   "game:spear_flash": "Lance ionisante",
-  "game:saber_right": "Chauffer/Refroidir la lame"
+  "game:saber_right": "Chauffer/Refroidir la lame",
+
+
+
+  "item-edrill": "Perceuse électrique",
+  "item-echisel": "Marteau-perforateur électrique",
+  "item-edrilltip": "Mèche de forage",
+  "item-eaxe": "Hache électrique",
+
+  "game:drill1": "Creuse un bloc 1×1",
+  "game:drill2": "Creuse une zone 1×3 blocs",
+
+  "item-handbooktitle-edrill": "Utilisation",
+  "item-handbooktext-edrill": "L’exploitation minière passe à un nouveau niveau. Permet deux modes : 1×1 et 1×3.<br>Quand la batterie est vide, il cesse de fonctionner. N’oubliez pas de recharger !",
+
+  "item-handbooktitle-echisel": "Utilisation",
+  "item-handbooktext-echisel": "Fonctionne comme un burin alimenté par batterie. Un marteau en main secondaire n’est pas nécessaire. Non utilisé dans les recettes.<br>Quand la batterie est vide, il cesse de fonctionner. N’oubliez pas de recharger !",
+
+  "item-handbooktitle-edrilltip": "Utilisation",
+  "item-handbooktext-edrilltip": "Composant de base pour la perceuse électrique.",
+
+  "item-handbooktitle-eaxe": "Utilisation",
+  "item-handbooktext-eaxe": "Idéal pour le débitage. Non utilisé dans les recettes.<br>Quand la batterie est vide, il cesse de fonctionner. N’oubliez pas de recharger !"
+
+
 }

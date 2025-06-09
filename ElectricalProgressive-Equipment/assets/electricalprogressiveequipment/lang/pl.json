@@ -27,5 +27,28 @@
   "game:spear_common": "Zwykła włócznia",
   "game:spear_flash": "Jonizująca włócznia",
 
-  "game:saber_right": "Rozgrzej/Zgasić ostrze"
+  "game:saber_right": "Rozgrzej/Zgasić ostrze",
+
+
+  "item-edrill": "Wiertło elektryczne",
+  "item-echisel": "Młot udarowy elektryczny",
+  "item-edrilltip": "Końcówka wiertła",
+  "item-eaxe": "Elektryczna siekiera",
+
+  "game:drill1": "Wydobywa blok 1×1",
+  "game:drill2": "Wydobywa obszar 1×3 bloków",
+
+  "item-handbooktitle-edrill": "Użycie",
+  "item-handbooktext-edrill": "Wydobycie surowców wchodzi na nowy poziom. Pozwala pracować w dwóch trybach: 1×1 i 1×3.<br>Gdy się rozładuje, przestaje działać. Nie zapomnij naładować!",
+
+  "item-handbooktitle-echisel": "Użycie",
+  "item-handbooktext-echisel": "Pełni funkcję dłuta zasilanego baterią. Młot w lewej ręce nie jest potrzebny. Nie używane w recepturach.<br>Gdy się rozładuje, przestaje działać. Nie zapomnij naładować!",
+
+  "item-handbooktitle-edrilltip": "Użycie",
+  "item-handbooktext-edrilltip": "Podstawowy element wiertła elektrycznego.",
+
+  "item-handbooktitle-eaxe": "Użycie",
+  "item-handbooktext-eaxe": "Świetnie radzi sobie z rąbaniem. Nie używane w recepturach.<br>Gdy się rozładuje, przestaje działać. Nie zapomnij naładować!"
+
+
 }

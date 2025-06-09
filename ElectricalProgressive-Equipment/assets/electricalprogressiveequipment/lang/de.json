@@ -27,5 +27,28 @@
   "game:spear_common": "Normaler Speer",
   "game:spear_flash": "Ionisierender Speer",
 
-  "game:saber_right": "Klinge erhitzen/erlöschen"
+  "game:saber_right": "Klinge erhitzen/erlöschen",
+
+
+  "item-edrill": "Elektrische Bohrmaschine",
+  "item-echisel": "Elektrischer Bohrhammer",
+  "item-edrilltip": "Bohrerspitze",
+  "item-eaxe": "Elektrische Axt",
+
+  "game:drill1": "Gräbt einen 1×1 Block",
+  "game:drill2": "Gräbt einen 1×3 Blockbereich",
+
+  "item-handbooktitle-edrill": "Verwendung",
+  "item-handbooktext-edrill": "Der Abbau erreicht ein neues Niveau. Ermöglicht zwei Modi: 1×1 und 1×3.<br>Wenn der Akku leer ist, hört es auf zu funktionieren. Nicht vergessen: aufladen!",
+
+  "item-handbooktitle-echisel": "Verwendung",
+  "item-handbooktext-echisel": "Führt die Funktion eines batteriebetriebenen Meißels aus. Hammer in der linken Hand ist nicht nötig. Nicht in Rezepten verwendbar.<br>Wenn der Akku leer ist, hört es auf zu funktionieren. Nicht vergessen: aufladen!",
+
+  "item-handbooktitle-edrilltip": "Verwendung",
+  "item-handbooktext-edrilltip": "Grundkomponente für die elektrische Bohrmaschine.",
+
+  "item-handbooktitle-eaxe": "Verwendung",
+  "item-handbooktext-eaxe": "Perfekt zum Fällen geeignet. Nicht in Rezepten verwendbar.<br>Wenn der Akku leer ist, hört es auf zu funktionieren. Nicht vergessen: aufladen!"
+
+
 }
