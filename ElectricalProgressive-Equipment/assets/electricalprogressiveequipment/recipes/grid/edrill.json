@@ -25,9 +25,10 @@
       "type": "item",
       "code": "game:ingot-cupronickel", "quantity": 2
     },
-	"D": {
+    "D": {
       "type": "item",
-      "code": "electricalprogressiveqol:edrilltip", "quantity": 1
+      "code": "electricalprogressiveequipment:edrilltip",
+      "quantity": 1
     }
   },
   "width": 3,
